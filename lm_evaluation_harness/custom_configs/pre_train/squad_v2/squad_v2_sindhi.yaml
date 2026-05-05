@@ -1,0 +1,2 @@
+class: !function task.SQuAD2_Sindhi
+task: squad_v2_sindhi

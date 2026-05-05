@@ -1,0 +1,25 @@
+task: mmlu_pro_chinese
+dataset_path: li-lab/MMLU-ProX
+dataset_name: zh
+output_type: multiple_choice
+training_split: null
+validation_split: validation
+test_split: test
+
+fewshot_split: validation
+fewshot_config:
+  sampler: default
+
+doc_to_text: "{{question.strip()}}\nA. {{option_0}}\nB. {{option_1}}\nC. {{option_2}}\nD. {{option_3}}\nE. {{option_4}}\nF. {{option_5}}\nG. {{option_6}}\nH. {{option_7}}\nI. {{option_8}}\nJ. {{option_9}}\nAnswer:"
+doc_to_choice: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+doc_to_target: "{{answer_index}}"
+
+num_fewshot: 5
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+
+metadata:
+  version: 0.0.1

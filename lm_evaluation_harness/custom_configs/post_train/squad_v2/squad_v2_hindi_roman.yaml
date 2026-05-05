@@ -1,0 +1,2 @@
+task: squad_v2_hindi_roman
+class: !function task.SQuAD2_Hindi_roman

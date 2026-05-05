@@ -1,0 +1,15 @@
+task: gpqa_extended_konkani
+dataset_path: ai4bharat/gpqa
+dataset_name: gpqa_extended
+output_type: multiple_choice
+test_split: train
+doc_to_text: "Question: {{question_Konkani_translation.strip()}}\nA. {{choices_Konkani_translation[0].strip()}}\nB. {{choices_Konkani_translation[1].strip()}}\nC. {{choices_Konkani_translation[2].strip()}}\nD. {{choices_Konkani_translation[3].strip()}}\nAnswer:"
+doc_to_target: answer
+doc_to_choice: ["A", "B", "C", "D"]
+
+num_fewshot: 5
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true

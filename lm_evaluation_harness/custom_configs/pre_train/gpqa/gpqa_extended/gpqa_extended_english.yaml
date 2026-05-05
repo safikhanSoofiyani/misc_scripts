@@ -1,0 +1,15 @@
+task: gpqa_extended_english
+dataset_path: ai4bharat/gpqa
+dataset_name: gpqa_extended
+output_type: multiple_choice
+test_split: train
+doc_to_text: "Question: {{question.strip()}}\nA. {{choices[0].strip()}}\nB. {{choices[1].strip()}}\nC. {{choices[2].strip()}}\nD. {{choices[3].strip()}}\nAnswer:"
+doc_to_target: answer
+doc_to_choice: ["A", "B", "C", "D"]
+
+num_fewshot: 5
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true

@@ -1,0 +1,16 @@
+task: winogrande_marathi
+dataset_path: ai4bharat/winogrande
+dataset_name: winogrande_xl
+output_type: multiple_choice
+training_split: null
+test_split: validation
+doc_to_text: "Question: {{question_Marathi_translation.strip()}}\nA. {{choices_Marathi_translation[0].strip()}}\nB. {{choices_Marathi_translation[1].strip()}}\nAnswer:"
+doc_to_target: answer
+doc_to_choice: ["A", "B"]
+
+num_fewshot: 5
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true

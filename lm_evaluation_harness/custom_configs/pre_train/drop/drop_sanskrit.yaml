@@ -1,0 +1,25 @@
+task: drop_sanskrit
+dataset_path: ai4bharat/drop
+output_type: generate_until
+test_split: validation
+doc_to_text: "Passage: {{passage_Sanskrit_translation}}\n Question: {{question_Sanskrit_translation}}\nAnswer:"
+doc_to_target: "{{answer_list_Sanskrit_translation[0]}}"
+process_results: !function utils.process_results_sanskrit
+
+num_fewshot: 5
+
+generation_kwargs:
+  until:
+    - "Passage:"
+    - "</s>"
+    - "."
+    - "<|im_end|>"
+metric_list:
+  - metric: em
+    aggregation: mean
+    higher_is_better: true
+  - metric: f1
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 3.0

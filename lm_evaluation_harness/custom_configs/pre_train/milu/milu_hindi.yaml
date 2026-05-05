@@ -1,0 +1,27 @@
+task: milu_hindi
+dataset_path: ai4bharat/milu
+dataset_name: Hindi
+output_type: multiple_choice
+training_split: null
+validation_split: validation
+test_split: test
+
+fewshot_split: validation
+fewshot_config:
+  sampler: default
+
+# doc_to_text: "Question: {{question.strip()}}\nAnswer:"
+# doc_to_choice: "{{choices}}"
+doc_to_text: "{{question.strip()}}\\n{% set letters = ['A', 'B', 'C', 'D'] %}{% for i in range(choices|length) %}{{letters[i]}}. {{choices[i]}}\\n{% endfor %}Answer:"
+doc_to_choice: ["A", "B", "C", "D"]
+doc_to_target: "{{answer}}"
+
+num_fewshot: 5
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+
+metadata:
+  version: 0.0.1

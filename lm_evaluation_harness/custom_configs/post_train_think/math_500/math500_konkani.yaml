@@ -1,0 +1,29 @@
+task: math500_konkani
+dataset_path: ai4bharat/MATH-500
+dataset_name: null
+output_type: generate_until
+test_split: test
+doc_to_text: "Solve the below question carefully. The final answer should be in the following format: \\boxed{<answer>}. Always enclose the answer in \\boxed{}. \n\nQuestion: {{question_Konkani_translation}}"
+doc_to_target: solution_Konkani_translation
+
+process_results: !function utils.process_results
+
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: false
+
+generation_kwargs:
+  until:
+    - "Question:"
+    - "</s>"
+    - "<|im_end|>"
+  do_sample: false
+  temperature: 0.0
+
+repeats: 1
+
+metadata:
+  version: 3.0

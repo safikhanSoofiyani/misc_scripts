@@ -1,0 +1,19 @@
+task: indic_gen_bench_flores_in_xx_en_tamil
+dataset_path: ai4bharat/IndicGenBench_flores_in
+dataset_name: ta-en
+training_split: train
+validation_split: validation
+fewshot_split: validation
+test_split: test
+
+fewshot_config:
+  sampler: default
+doc_to_text: "{{source.strip()}}\nThe translation of the above sentence into English follows.\nThe translation is::"
+doc_to_target: "{{target.strip()}}"
+
+metric_list:
+  - metric: chrf
+  - metric: bleu
+
+metadata:
+  version: 0.0.1

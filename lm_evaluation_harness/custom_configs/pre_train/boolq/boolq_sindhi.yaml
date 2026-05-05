@@ -1,0 +1,16 @@
+task: boolq_sindhi
+dataset_path: ai4bharat/boolq
+dataset_name: null
+output_type: multiple_choice
+training_split: null
+test_split: validation
+doc_to_text: "{{passage_Sindhi_translation}}\n Question: {{question_Sindhi_translation.strip()}}\nA. {{choices_Sindhi_translation[0].strip()}}\nB. {{choices_Sindhi_translation[1].strip()}}\nAnswer:"
+doc_to_target: answer
+doc_to_choice: ["A", "B"]
+
+num_fewshot: 5
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true

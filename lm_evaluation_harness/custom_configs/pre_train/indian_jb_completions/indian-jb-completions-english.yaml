@@ -1,0 +1,26 @@
+task: "indian_jb_completions_english"
+dataset_path: ai4bharat/indian-jb-completions
+dataset_name: null
+test_split: train
+output_type: generate_until
+
+doc_to_text: "{{completions}}"
+doc_to_target: "{{completions}}"
+
+generation_kwargs:
+  until:
+    - "Question:"
+    - "</s>"
+    - "<|im_end|>"
+  do_sample: false
+  temperature: 0.0
+
+metric_list:
+  - metric: gpt_eval
+    aggregation: !function utils.gpt_aggregate_results
+    higher_is_better: true
+
+process_results: !function utils.gpt_process_results
+
+metadata:
+  version: 0.0

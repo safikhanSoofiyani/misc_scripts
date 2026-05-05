@@ -1,0 +1,2 @@
+class: !function task.SQuAD2_Sanskrit
+task: squad_v2_sanskrit

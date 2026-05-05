@@ -1,0 +1,24 @@
+task: drop_malayalam_roman
+dataset_path: ai4bharat/drop
+output_type: generate_until
+test_split: validation
+
+description: "Below is a passage and a question. Answer the question based on the passage. After explanation finish your answer with the statement \"Hence the answer is: <answer>\" where <answer> is the correct answer.\n"
+doc_to_text: "Passage: {{passage_Malayalam_romanization}}\n Question: {{question_Malayalam_romanization}}"
+doc_to_target: "{{answer_list_Malayalam_romanization[0]}}"
+process_results: !function utils.process_results_malayalam_roman
+
+generation_kwargs:
+  until:
+    - "</s>"
+    - "<|im_end|>"
+    - "<eos>"
+metric_list:
+  - metric: em
+    aggregation: mean
+    higher_is_better: true
+  - metric: f1
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 3.0

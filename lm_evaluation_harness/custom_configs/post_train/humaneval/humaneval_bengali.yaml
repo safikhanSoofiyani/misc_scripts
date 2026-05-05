@@ -1,0 +1,30 @@
+task: humaneval_bengali
+dataset_path: ai4bharat/humaneval
+dataset_name: default
+unsafe_code: true
+output_type: generate_until
+test_split: test
+doc_to_text: |
+  Think carefully and output the fully functional python code solution inside ```python ```.
+  Make sure that it passes the tests. Here is the problem:
+  
+  ```{{prompt_Bengali_translation}}"
+doc_to_target: "{{test}}\ncheck({{entry_point}})"
+filter_list:
+  - name: "create_test"
+    filter:
+      - function: "custom"
+        filter_fn: !function utils.build_predictions_instruct
+metric_list:
+  - metric: !function utils.pass_at_k
+    aggregation: mean
+    higher_is_better: true
+    k: [1]
+generation_kwargs:
+  until:
+    - "</s>"
+    - "<|im_end|>"
+    - "<eos>"
+  max_gen_toks: 1024
+  do_sample: false
+repeats: 1

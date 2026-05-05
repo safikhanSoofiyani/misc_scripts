@@ -1,0 +1,16 @@
+task: siqa_santali
+dataset_path: ai4bharat/social_i_qa
+dataset_name: main
+output_type: multiple_choice
+training_split: null
+test_split: validation
+doc_to_text: "{{passage_Santali_translation}}\nQuestion: {{question_Santali_translation.strip()}}\nA. {{choices_Santali_translation[0].strip()}}\nB. {{choices_Santali_translation[1].strip()}}\nC. {{choices_Santali_translation[2].strip()}}\nAnswer:"
+doc_to_target: answer
+doc_to_choice: ["A", "B", "C"]
+
+num_fewshot: 5
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true

@@ -1,0 +1,2 @@
+class: !function task.SQuAD2_Punjabi_roman
+task: squad_v2_punjabi_roman

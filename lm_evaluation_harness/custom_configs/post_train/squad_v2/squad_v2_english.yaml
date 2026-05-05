@@ -1,0 +1,2 @@
+task: squad_v2_english
+class: !function task.SQuAD2

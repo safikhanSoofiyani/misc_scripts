@@ -1,0 +1,2 @@
+task: squad_v2_hindi
+class: !function task.SQuAD2_Hindi

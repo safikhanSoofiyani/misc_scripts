@@ -1,0 +1,2 @@
+class: !function task.SQuAD2_Konkani
+task: squad_v2_konkani

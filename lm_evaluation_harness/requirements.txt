@@ -1,0 +1,3 @@
+langdetect
+immutabledict
+indic-nlp-library

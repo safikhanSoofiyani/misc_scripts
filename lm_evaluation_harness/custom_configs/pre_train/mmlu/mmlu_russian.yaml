@@ -1,0 +1,25 @@
+task: mmlu_russian
+dataset_path: ai4bharat/mmlu_ru
+dataset_name: all
+output_type: multiple_choice
+training_split: null
+validation_split: null
+test_split: test
+
+fewshot_split: val
+fewshot_config:
+  sampler: default
+
+doc_to_text: "{{question_ru.strip()}}\nA. {{choices_ru[0]}}\nB. {{choices_ru[1]}}\nC. {{choices_ru[2]}}\nD. {{choices_ru[3]}}\nAnswer:"
+doc_to_choice: ["A", "B", "C", "D"]
+doc_to_target: "{{answer}}"
+
+num_fewshot: 5
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+
+metadata:
+  version: 0.0.1

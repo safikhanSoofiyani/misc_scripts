@@ -1,0 +1,39 @@
+task: commonsense_qa_sanskrit_roman
+dataset_path: ai4bharat/commonsense_qa
+dataset_name: null
+output_type: generate_until
+training_split: null
+validation_split: null
+test_split: validation
+
+description: "Below is a multiple choice question. After explanation finish your answer with statement \"the answer is (X)\" where X is the correct letter from the below choices.\n"
+doc_to_text: |
+  Please read the question carefully and choose the correct answer from the given options.
+  Question: {{question_Sanskrit_romanization.strip()}}
+  Options:
+  A. {{choices_Sanskrit_romanization[0]}}
+  B. {{choices_Sanskrit_romanization[1]}}
+  C. {{choices_Sanskrit_romanization[2]}}
+  D. {{choices_Sanskrit_romanization[3]}}
+  E. {{choices_Sanskrit_romanization[4]}}
+
+doc_to_target: "{% if answer == 0 %}A{% elif answer == 1 %}B{% elif answer == 2 %}C{% elif answer == 3 %}D{% elif answer == 4 %}E{% endif %}"
+
+generation_kwargs:
+  until:
+    - "</s>"
+    - "<|im_end|>"
+    - "<eos>"
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+    ignore_punctuation: true
+    ignore_case: true
+filter_list:
+  - name: "custom-extract"
+    filter:
+      - function: "regex"
+        # regex_pattern: 'answer is\\s*\\**\\(?\\**([ABCD])\\**\\)?\\**'
+        regex_pattern: '(?:<?/think>?\s*)(?:.|\n)*?answer is\s*\*?\(?\*?([ABCDE])\*?\)?\*?'
+      - function: "take_first"

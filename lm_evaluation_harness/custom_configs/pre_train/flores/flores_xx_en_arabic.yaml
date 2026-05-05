@@ -1,0 +1,19 @@
+task: flores_xx_en_arabic
+dataset_path: facebook/flores
+dataset_name: arb_Arab-eng_Latn
+training_split: null
+validation_split: dev
+fewshot_split: dev
+test_split: devtest
+
+fewshot_config:
+  sampler: default
+doc_to_text: "{{sentence_arb_Arab.strip()}}\nThe translation of the above sentence into English follows.\nThe translation is::"
+doc_to_target: "{{sentence_eng_Latn.strip()}}"
+
+metric_list:
+  - metric: chrf
+  - metric: bleu
+
+metadata:
+  version: 0.0.1
