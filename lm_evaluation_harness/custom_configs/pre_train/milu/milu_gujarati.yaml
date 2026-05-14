@@ -12,9 +12,9 @@ fewshot_config:
 
 # doc_to_text: "Question: {{question.strip()}}\nAnswer:"
 # doc_to_choice: "{{choices}}"
-doc_to_text: "{{question.strip()}}\\n{% set letters = ['A', 'B', 'C', 'D'] %}{% for i in range(choices|length) %}{{letters[i]}}. {{choices[i]}}\\n{% endfor %}Answer:"
+doc_to_text: "{{question.strip()}}\\nA. {{option1}}\\nB. {{option2}}\\nC. {{option3}}\\nD. {{option4}}\\nAnswer:"
 doc_to_choice: ["A", "B", "C", "D"]
-doc_to_target: "{{answer}}"
+doc_to_target: "{% if target == 'option1' %}0{% elif target == 'option2' %}1{% elif target == 'option3' %}2{% elif target == 'option4' %}3{% endif %}"
 
 num_fewshot: 5
 
